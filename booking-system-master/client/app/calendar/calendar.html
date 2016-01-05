@@ -1,0 +1,16 @@
+<div class="container pad-top">
+    <div ui-calendar="uiConfig.calendar" ng-model="eventSources"></div>
+
+    <div class="hero-unit" ng-show="booking">
+        <div class="row">
+            <h3 class="modal-title">{{booking.title}}</h3>
+        </div>
+        <div class="row">
+            <h3>Start date: {{booking._start | date:'medium'}}</h3>
+            <h3>End date: {{booking._end | date:'medium'}}</h3>
+        </div>
+        <div class="btn btn-primary" ng-click="booking = false">Close</div>
+      <div ng-show="isAdmin()" ng-click="removeBooking(booking)" class="btn btn-primary">Remove</div>
+    </div>
+</div>
+

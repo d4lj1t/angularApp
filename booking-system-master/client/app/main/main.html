@@ -1,0 +1,35 @@
+<header class="hero-unit" id="banner">
+    <div class="container back-button-container">
+        <div class="back-button glyphicon glyphicon-menu-left " ng-show="device.show" ng-click="open(device)" tooltip-enable="true" tooltip-trigger="mouseenter" tooltip-placement="bottom" tooltip="Go Back"></div>
+    </div>
+    <div class="container">
+        <h1>'Allo, 'Allo!</h1>
+        <p class="lead">Select the device you would like to book</p>
+        <p class="lead">We currently have {{devices.length}} devices</p>
+    </div>
+</header>
+<div class="container pad-top">
+    <div class="row">
+        <div class="col-xs-6 col-md-4 repeat-animation" ng-class="device.class" ng-style="device.css" ng-repeat="device in devices">
+            <div class="card magic" ng-class="device.class" id="{{device.$id}}">
+                <div class="header-bg" width="250" height="70" id="header-blur">
+                    <div class="img" back-img="{{::device.imgUrl}}"></div>
+                </div>
+                <div class="avatar">
+                    <img ng-src="{{device.imgUrl}}" />
+                </div>
+                <div class="content">
+                    <p>{{::device.brand}}
+                        <br> {{::device.name}}
+                    </p>
+                    <p>
+                        <button type="button" class="btn btn-default" ng-show="!device.show" ng-click="open(device)">Book Now</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div ng-if="device.show" class="animate-slide-left row-no-padding">
+            <div class="slide-animate col-xs-12 col-md-6 booking-box" ng-include="templateUrl" ng-onload="device = deviceToShow"></div>
+        </div>
+    </div>
+</div>

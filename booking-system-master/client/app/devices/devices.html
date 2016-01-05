@@ -1,0 +1,60 @@
+<div class="col-md-12" ng-controller="DevicesCtrl">
+  <div class="row">
+    <div class="col-md-12">
+      <h3 class="border-bottom pad-bottom thick-marg-bottom"><strong>Add Device</strong></h3>
+      <form name="add_device_details" ng-submit="addDevice(newDevice)">
+        <fieldset>
+          <div class="inline-block">
+            <label for="device-brand">Device Brand</label>
+            <input ng-model="newDevice.brand" class="marg-right display-block" id="device-brand" type="text" name="device_brand" placeholder="Device Brand" required ng-minlength="1"/>
+            <!--   <select ng-model="newDevice.brand" class="marg-right display-block" id="device-brand" name="device_brand" placeholder="Device Brand" required>
+
+                 <option value="Sony">Sony</option>
+                 <option value="Apple">Apple</option>
+                 <option value="Nokia">Nokia</option>
+               </select>-->
+
+          </div>
+          <div class="inline-block">
+            <label for="device-name" class="display-block">Device Name</label>
+            <input ng-model="newDevice.name" class="marg-right inline-block" id="device-name" type="text" name="device_name" placeholder="Device Name" required ng-minlength="1"/>
+          </div>
+          <div class="inline-block">
+            <label for="device-name" class="display-block">Software Version</label>
+            <input ng-model="newDevice.softwareVersion" class="marg-right inline-block" id="software-version" type="text" name="device_softwareVersion" placeholder="Software Version"/>
+          </div>
+          <div class="inline-block">
+            <label for="device-imgUrl" class="display-block">Image URL</label>
+            <input ng-model="newDevice.imgUrl" class="marg-right inline-block" id="device-imgUrl" type="text" name="device_imgUrl" placeholder="imgUrl"/>
+          </div>
+          <div class="inline-block">
+            <label for="device-dummy1" class="display-block">Dummy Field</label>
+            <input ng-model="newDevice.dummy1" class="marg-right inline-block" id="device-dummy1" type="text" name="device-dummy1" placeholder="Dummy Field"/>
+            <input class="alert-success inline-block" type="submit" value="{{buttonText}}"/>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+  <div class="row marg-top">
+    <div class="col-md-12">
+      <ol class="marg-top list-unstyled">
+        <h3 class="border-bottom pad-bottom extra-thick-marg-bottom"><strong>Devices</strong></h3>
+        <li ng-repeat="device in devices | orderBy:'brand'" class="extra-thick-marg-bottom display-block">
+          <form name="device_details" ng-submit="updateDevice(device)">
+            <fieldset>
+              <input ng-model="device.brand" ng-readonly="device.isReadonly" ng-init="device.isReadonly='true'" class="inline-block marg-right" type="text"/>
+              <input ng-model="device.name" ng-readonly="device.isReadonly" class="inline-block marg-right" type="text"/>
+              <input ng-model="device.softwareVersion" ng-readonly="device.isReadonly" class="marg-right" type="text"/>
+              <input ng-model="device.imgUrl" ng-readonly="device.isReadonly" class="marg-right" type="text"/>
+              <input ng-model="device.dummy1" ng-readonly="device.isReadonly" class="marg-right" type="text"/>
+              <button ng-hide="device.isHidden" ng-init="device.isHidden='true'" class="btn btn-success inline-block marg-right" type="submit" value="Update">Update</button>
+              <button ng-click="removeDevice(device)" type="button" class="btn alert-danger marg-right" href="#" value="Remove">Remove</button>
+              <button ng-disabled="!device.isHidden" ng-click="editDevice(device)" type="button" class=" btn alert-warning marg-right" href="#" value="Edit">Edit</button>
+            </fieldset>
+          </form>
+        </li>
+      </ol>
+    </div>
+  </div>
+</div>

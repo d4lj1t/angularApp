@@ -1,0 +1,184 @@
+@sky-blue: #4393B9;
+.thing-form {
+    margin: 20px 0;
+}
+
+#banner {
+    border-bottom: none;
+    margin-top: -20px;
+}
+
+#banner h1 {
+    font-size: 60px;
+    line-height: 1;
+    letter-spacing: -1px;
+}
+
+.hero-unit {
+    position: relative;
+    padding: 30px 15px;
+    color: #F5F5F5;
+    text-align: center;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+    background: @sky-blue;
+}
+
+.footer {
+    text-align: center;
+    padding: 30px 0;
+    margin-top: 70px;
+    border-top: 1px solid #E5E5E5;
+}
+
+.src-image {
+    display: none;
+}
+
+.card {
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .14), 0 2px 2px 0 rgba(0, 0, 0, .098), 0 1px 5px 0 rgba(0, 0, 0, .084);
+    overflow: hidden;
+    position: relative;
+    border-radius: 4px;
+    text-align: center;
+    background-color: @sky-blue;
+    margin: 0 0 @helper-standard;
+    color: #fff;
+    opacity: 1;
+    transition: 0.8s cubic-bezier(0.4, -1.27, 0.54, 2.28) all;
+}
+
+.card.magic:hover {
+    box-shadow: 0 4px 1px -2px rgba(0, 0, 0, .14), 0 3px 2px 0 rgba(0, 0, 0, .098), 0 1px 5px 0 rgba(0, 0, 0, .084);
+    .transition-fast;
+}
+
+.card .header-bg {
+    /* This stretches the canvas across the entire hero unit */
+    
+    position: absolute;
+    overflow: hidden;
+    top: -4px;
+    left: -10px;
+    width: 110%;
+    height: 70px;
+    border-bottom: 1px #FFF solid;
+    z-index: 1;
+    /* This positions the canvas under the text */
+    .img {
+        filter: blur(4px);
+        width: 110%;
+        height: 110%;
+    }
+}
+.clicked .card .header-bg {
+    @media only screen and (max-width: 992px) {
+        width: 100%;
+    }
+}
+
+.card .avatar {
+    position: relative;
+    margin-top: 15px;
+    z-index: 100;
+}
+
+.card .avatar img {
+    width: 100px;
+    height: 100px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    border: 5px solid rgba(0, 0, 30, 0.8);
+}
+.clicked .card .avatar img {
+    @media only screen and (max-width: 992px) {
+        border: 5px solid rgba(0, 0, 30, 0.2);
+        transform: translate(140px, -20px);
+    }
+}
+.card {
+    &.ng-enter {
+        -webkit-animation: bounceIn 500ms;
+        -moz-animation: bounceIn 500ms;
+        -ms-animation: bounceIn 500ms;
+        animation: bounceIn 500ms;
+    }
+    &.ng-leave {
+        -webkit-animation: fade 500ms;
+        -moz-animation: bounceOut 500ms;
+        -ms-animation: bounceOut 500ms;
+        animation: fade 500ms;
+    }
+}
+
+.clicked {
+    z-index: 200;
+    @media only screen and (max-width: 992px) {
+        overflow: visible;
+        width: 100%;
+        padding: 0;
+        background: rgba(67, 147, 185, 0);
+        box-shadow: none;
+        .header-bg, .content {
+            opacity: 0
+        }
+        .avatar {
+              transform: translate(0, -25px);
+              .img {
+                border: 3px solid rgba(0, 0, 30, 0.8);
+              }
+        }
+    }
+    :hover {
+        box-shadow: none !important;
+    }
+}
+
+.booking-box {
+    border-radius: 4px;
+    box-shadow: 0 4px 1px -2px rgba(0, 0, 0, 0.14), 0 3px 2px 0 rgba(0, 0, 0, 0.098), 0 1px 5px 0 rgba(0, 0, 0, 0.084);
+    position: relative;
+    top: -40px;
+    background-color: #fff;
+    @media only screen and (max-width: 992px) {
+        top: -260px;
+    }
+}
+
+.row-no-padding {
+    [class*="col-"] {
+        padding-left: 0;
+        padding-right: 0;
+            @media only screen and (max-width: 992px) {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    }
+}
+
+.back-button-container {
+    position: absolute;
+}
+
+.back-button {
+    position: relative;
+    text-align: left;
+    display: inline;
+    float: left;
+    font-size: 40px;
+    &.ng-hide-add {
+        animation: slideOutLeft 500ms;
+    }
+    &.ng-hide-remove {
+        animation: fadeIn 500ms;
+    }
+}
+
+.animate-slide-left {
+    &.ng-enter {
+        animation: slideInRight 500ms;
+    }
+    &.ng-leave {
+        animation: slideOutRight 500ms;
+    }
+}

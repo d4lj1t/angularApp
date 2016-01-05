@@ -1,0 +1,113 @@
+<div ng-controller="BookingsCtrl">
+
+
+  <div class="modal-header">
+    <h3 class="modal-title">Add Book for {{device.brand}} {{device.name}}</h3> Currently there are {{bookings.length}} bookings.
+  </div>
+  <div ng-show="step == 1">
+    <form class="form-horizontal" ng-submit="addCalItem(event)">
+      <fieldset>
+        <!-- Form Name -->
+        <div class="alert alert-warning" ng-show="error">{{error}}</div>
+        <div class="modal-body magic">
+          <!-- Text input-->
+          <div class="control-group">
+            <label class="control-label" for="name">Your Email</label>
+            <div class="controls">
+              <input type="email" id="name" name="email" ng-model="email" autocomplete="off" required typeahead="user as user.email for user in users | filter:$viewValue | limitTo:8" class="form-control">
+            </div>
+          </div>
+          <!-- Text input-->
+          <div class="control-group">
+            <label class="control-label">Device</label>
+            <div class="controls">
+              {{device.brand}} - {{device.name}}
+            </div>
+          </div>
+          <!-- Text input-->
+          <div class="control-group">
+            <label class="control-label" for="event.start">Start Date</label>
+            <div class="controls">
+              <div class="dropdown">
+                <a class="dropdown-toggle" id="dropdown" role="button" data-toggle="dropdown" data-target="#" href="#">
+                  <div class="input-group">
+                    <input type="text" class="form-control" data-ng-model="event.start | date: 'hh:mm a, EEE dd-MMM-yy'">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                  </div>
+                </a>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                  <datetimepicker bookings="bookings " data-ng-model="event.start" data-datetimepicker-config="{ dropdownSelector: '#dropdown', minView: 'hour' }"/>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- Text input-->
+          <div class="control-group" ng-hide="event.allDay">
+            <label class="control-label" for="event.end">End Date</label>
+            <div class="controls">
+              <div class="relative">
+                <div class="dropdown">
+                  <a class="dropdown-toggle" id="dropdown1" role="button" data-toggle="dropdown" data-target="#" href="#">
+                    <div class="input-group">
+                      <input type="text" class="form-control " data-ng-model="event.end | date: 'hh:mm a, EEE dd-MMM-yy'">
+                      <span class="input-group-addon "><i class="glyphicon glyphicon-calendar "></i></span>
+                    </div>
+                  </a>
+                  <ul class="dropdown-menu " id="event.end " role="menu " aria-labelledby="dLabel ">
+                    <datetimepicker bookings="bookings " data-ng-model="event.end " data-datetimepicker-config="{ dropdownSelector: '#dropdown1', minView: 'hour'} "/>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Multiple Checkboxes (inline) -->
+
+          <div class="checkbox ">
+            <label>
+              <input type="checkbox" ng-model="event.allDay "> All Day
+            </label>
+          </div>
+        </div>
+
+        <!-- Button (Double) -->
+        <div class="control-group modal-footer ">
+          <div class="controls ">
+            <a ng-click="resCalItem(event) " type="reset " class="pull-left pad-top" id="Reset " name="remove ">Reset</a>
+            <button class="btn btn-success " type="submit " id="save " name="Book ">Book</button>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+
+  <div ng-hide="step==1">
+    <div ng-show="step==2 && !user " class="hero-unit ">
+      <h1>Welcome!</h1>
+      <h3>Hey, we noticed this is your first time using our system.</h3>
+      <p>We just need to confirm your email before we can let you book a device</p>
+      <button class="btn btn-default " ng-click="addEmail(email)">Confirm</button>
+    </div>
+    <div ng-show="step==3 " class="hero-unit ">
+      <h1>Email sent!</h1>
+      <h3>We sent you an email at {{email}}</h3>
+      <p>We'll keep your booking details saved while you check your email.</p>
+      <a href="{{emailUrl}} " class="btn btn-success thin-pad-bottom" target="_blank ">Take me to my email</a>
+      <div class="caption ">Keep this page open to automatically book once you have confirmed your account</div>
+    </div>
+
+    <div class="hero-unit " ng-show="step==2 && user && !user.validated "><h2>Please validate your account</h2>
+      <h1 class="glyphicon-refresh glyphicon "></h1>
+      <div class="caption ">Keep this page open to automatically book once you have confirmed your account</div>
+    </div>
+
+
+    <div class="hero-unit success " ng-show="user && user.validated && booking ">
+      <h2>Your booking is confirmed</h2>
+      <h1 class="fa fa-check "></h1>
+      <h3>From: {{booking.start | date: 'hh:mm a, EEE dd-MMM-yy'}}</h3>
+      <h3>From: {{booking.end | date: 'hh:mm a, EEE dd-MMM-yy'}}</h3>
+      <a class="btn btn-default" href="/calendar">Go to Calendar</a>
+    </div>
+  </div>
+
+</div>

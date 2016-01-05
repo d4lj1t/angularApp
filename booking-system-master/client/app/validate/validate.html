@@ -1,0 +1,28 @@
+<div class="hero-unit">
+
+    <div ng-hide="user">
+        <h1 class="glyphicon glyphicon-remove"></h1>
+
+        <h1>Hey, we couldn't find you in our system</h1>
+       <h2>Please check the email we sent you.</h2>
+    </div>
+
+    <div ng-hide="user.validated">
+        <h1>Let's get you activated</h1>
+        <button class="btn btn-primary" ng-click="validate()">Click Me!</button>
+    </div>
+
+    <div ng-show="user.validated">
+        <h1 class="glyphicon glyphicon-ok"></h1>
+   <h1>You're now validated</h1>
+   <h2>Book away</h2>
+    </div>
+
+
+</div>
+
+<div ng-hide="true">
+<div class="text-muted"> {{user}} </div>
+<div class="text-muted" ng-click="notValidated()"> Mark as not validated </div>
+
+</div>
